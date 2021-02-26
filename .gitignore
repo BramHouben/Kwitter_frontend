@@ -21,3 +21,17 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+node_modules
+
+coverage
+
+dist
+lib
+es
+types
+
+website/translated_docs
+website/build/
+website/node_modules
+website/i18n/*
