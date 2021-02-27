@@ -21,7 +21,7 @@ function App() {
 
   return (
     //  <div className="App">
-    <div className="container">
+    <div className="App">
       <Header />
       <h1>{name}</h1>
       <h2>{siteOnline ? "Site is online" : "Site is offline"}</h2>
