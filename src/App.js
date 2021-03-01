@@ -8,7 +8,7 @@ import Tweets from "./Components/Tweets";
 function App() {
   const siteOnline = true;
   const name = "Kwitter";
-  const [tweets, setTweet] = useState([
+  const [tweets] = useState([
     {
       id: 1,
       content: "This is tweet one",
@@ -20,8 +20,7 @@ function App() {
   ]);
 
   return (
-    //  <div className="App">
-    <div className="App">
+    <div className='App'>
       <Header />
       <h1>{name}</h1>
       <h2>{siteOnline ? "Site is online" : "Site is offline"}</h2>
