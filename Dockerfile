@@ -1,13 +1,13 @@
-FROM node:12.18-alpine
-ENV NODE_ENV=production
+# build env
+FROM node:13.12.0-alpine as build
 WORKDIR /app
-COPY ["package.json", "./"]
-RUN npm install --production --silent && mv node_modules ../
+COPY package*.json ./
+RUN npm ci
 COPY . ./
-EXPOSE 3000
-CMD ["npm", "build"]
+RUN npm run build
 
-
-FROM nginx:alpine
-COPY --from=0 /app/build /usr/share/nginx/html
-CMD ["nginx","-g","daemon off;"]
+# production env
+FROM nginx:stable-alpine
+COPY --from=build /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
