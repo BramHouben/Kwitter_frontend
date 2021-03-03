@@ -33,3 +33,13 @@ stages:
         repository: '22021999/reactkwitter'
         command: 'push'
         tags: 'latest'
+
+    - task: AzureRmWebAppDeployment@4
+      inputs:
+          ConnectionType: 'AzureRM'
+          azureSubscription: 'Azure for Students (b6bb145a-121c-46c2-8b30-f8d25c3b1fee)'
+          appType: 'webAppContainer'
+          WebAppName: 'dockerReactKwitter'
+          DockerNamespace: '22021999'
+          DockerRepository: 'reactkwitter'
+          DockerImageTag: 'latest'
