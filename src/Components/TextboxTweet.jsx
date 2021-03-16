@@ -13,7 +13,7 @@ class TextboxTweet extends Component {
   handleChangeName = (event) => {
     this.setState({ name: event.target.value });
   };
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
     console.log(this.state.content);
     console.log(this.state.name);
@@ -32,7 +32,7 @@ class TextboxTweet extends Component {
     //     },
     //   }
     // );
-    axios
+    await axios
       .post("http://localhost:8096/tweets", null, {
         params: {
           accountname: this.state.name,
@@ -42,6 +42,7 @@ class TextboxTweet extends Component {
       .then((res) => {
         console.log(res);
         console.log(res.data);
+        window.location.reload(false);
       });
   };
 
