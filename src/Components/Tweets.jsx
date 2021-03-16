@@ -4,7 +4,6 @@ import { Component } from "react";
 class Tweets extends Component {
   render() {
     let { tweets } = this.props;
-    console.log(this.props);
     return (
       <div>
         {tweets.map((tweet) => (
