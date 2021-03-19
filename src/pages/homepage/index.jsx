@@ -12,7 +12,14 @@ export default class Homepage extends React.Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:8096/tweets/exampletweetlist").then((data) => {
+    const instance = axios.create({
+      baseURL: "http://localhost:8081/",
+      withCredentials: false,
+      headers: {
+        "Access-Control-Allow-Origin": "http://localhost:3000",
+      },
+    });
+    instance.get("tweets/exampletweetlist").then((data) => {
       console.log("this is dats" + data);
       this.setState({ tweets: data.data });
     });
