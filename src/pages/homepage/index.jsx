@@ -8,6 +8,7 @@ export default class Homepage extends React.Component {
     super();
     this.state = {
       tweets: [],
+      dataloaded: false,
     };
   }
 
@@ -19,13 +20,25 @@ export default class Homepage extends React.Component {
         "Access-Control-Allow-Origin": "http://localhost:3000",
       },
     });
-    instance.get("tweets/exampletweetlist").then((data) => {
-      console.log("this is dats" + data);
-      this.setState({ tweets: data.data });
-    });
+    instance
+      .get("tweets/exampletweetlist")
+      .then((data) => {
+        console.log("this is dats" + data);
+        this.setState({ tweets: data.data });
+        this.setState({ dataloaded: true });
+      })
+      .catch(function (error) {
+        console.log(error);
+        // this.setState({ dataloaded: false });
+      });
   }
   render() {
     let { tweets } = this.state;
+    let { dataloaded } = this.state;
+    console.log(dataloaded);
+    if ({ dataloaded }) {
+    }
+
     return (
       <div>
         <Container maxWidth='sm'>
