@@ -23,12 +23,32 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
+
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'SonarFrontend'
+        organization: '410994'
+        scannerMode: 'CLI'
+        configMode: 'manual'
+        cliProjectKey: '410994_ReactKwitter'
+        cliProjectName: 'ReactKwitter'
+        cliSources: '.'
+    - task: Npm@1
+      inputs:
+       command: 'custom'
+       customCommand: 'run build'
+
+    - task: SonarCloudAnalyze@1
+    - task: SonarCloudPublish@1
+      inputs:
+        pollingTimeoutSec: '300'
     - task: Docker@2
       displayName: Build an image
       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         arguments: '-t 22021999/reactkwitter:latest'
+          
           
     - task: Docker@2
       inputs:
@@ -46,3 +66,4 @@ stages:
           DockerNamespace: '22021999'
           DockerRepository: 'reactkwitter'
           DockerImageTag: 'latest'
+      
