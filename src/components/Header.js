@@ -2,8 +2,7 @@ import Proptypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Register from "../pages/register";
-import { Link } from "@material-ui/core";
+import routerPaths from "../services/shared/router-paths";
 
 const Header = ({ title }) => {
   return (
@@ -11,7 +10,10 @@ const Header = ({ title }) => {
     <AppBar position='static'>
       <Toolbar>
         <Typography variant='h6'>{title}</Typography>
-        <Link to='/register' component={Register} />
+        {/* <Link to='/register' component={Register} /> */}
+        <a key='register' href={routerPaths.Register}>
+          register
+        </a>
       </Toolbar>
     </AppBar>
     // </header>
