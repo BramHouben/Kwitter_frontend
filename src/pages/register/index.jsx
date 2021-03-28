@@ -26,7 +26,7 @@ export default class Homepage extends React.Component {
             <InputLabel htmlFor='email-input'>Email address</InputLabel>
             <Input id='email-input' aria-describedby='email-input-text' />
             <FormHelperText id='email-input-text'>
-              We'll never share your email.
+              We'll never share your email!
             </FormHelperText>
           </FormControl>
 
