@@ -45,6 +45,30 @@ stages:
       inputs:
         pollingTimeoutSec: '300'
 
+    - task: DockerInstaller@0
+      inputs:
+        dockerVersion: '17.09.0-ce'
+
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'DockerPersonalProject'
+        command: 'login'
+        addPipelineData: false
+   
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'DockerPersonalProject'
+        repository: '22021999/reactkwitter'
+        command: 'buildAndPush'
+        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        tags: 'latest'
+        addPipelineData: false
+    
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'DockerPersonalProject'
+        command: 'logout'
+        addPipelineData: false
     # - task: Docker@2
     #   displayName: Build an image
     #   inputs:
