@@ -7,7 +7,13 @@ trigger:
 - dev
 
 pool:
-  vmImage: ubuntu-latest
+ vmImage: 'ubuntu-20.04'
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
 
 stages:
 - stage: Build
