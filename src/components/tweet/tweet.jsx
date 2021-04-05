@@ -1,29 +1,36 @@
 import Proptypes from "prop-types";
 import { Component } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import Moment from "react-moment";
+import "moment-timezone";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import "../../components/tweet/tweet.css";
+
 class Tweet extends Component {
   render() {
-    const useStyles = makeStyles({
-      root: {
-        maxWidth: 350,
-      },
-    });
     console.log(this.props);
     let { tweet } = this.props;
-
     return (
-      <div className='tweet'>
-        <Card variant='outlined' className={useStyles.root}>
+      <div className='tweet' id='tweet'>
+        <Card variant='outlined'>
           <CardContent>
-            <Typography color='textSecondary' variant='h5' component='h2'>
+            <div id='momenttime'>
+              <Moment fromNow ago>
+                {tweet.tweetTime}
+              </Moment>
+              -ago posted
+            </div>
+            <Typography
+              id='tweetusername'
+              color='textSecondary'
+              variant='h5'
+              component='h2'
+            >
               {tweet.accountName}
             </Typography>
-            <Typography>tweet time: {tweet.tweetTime}</Typography>
 
-            <h5>{tweet.content}</h5>
+            <p>{tweet.content}</p>
           </CardContent>
         </Card>
       </div>
