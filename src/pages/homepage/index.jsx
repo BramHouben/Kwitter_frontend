@@ -1,8 +1,10 @@
 import React from "react";
-import TextBoxTweet from "../../components/TextboxTweet";
-import Tweets from "../../components/Tweets";
-import axios from "axios";
-import Container from "@material-ui/core/Container";
+import TextBoxTweet from "../../components/textboxtweet/textboxTweet";
+import Tweets from "../../components/tweetlist/tweets";
+import Grid from "@material-ui/core/Grid";
+import ApiAction from "../../services/Api/apiactions";
+import Instance from "../../services/Api/axioscreate";
+import Searchbar from "../../components/searchbar/searchbar";
 export default class Homepage extends React.Component {
   constructor() {
     super();
@@ -13,17 +15,9 @@ export default class Homepage extends React.Component {
   }
 
   componentDidMount() {
-    const instance = axios.create({
-      baseURL: "http://localhost:8081/",
-      withCredentials: false,
-      headers: {
-        "Access-Control-Allow-Origin": "http://localhost:3000",
-      },
-    });
-    instance
-      .get("tweets/exampletweetlist")
+    Instance.get(ApiAction.getTweetList)
       .then((data) => {
-        console.log("this is dats" + data);
+        console.log("this is data" + data);
         this.setState({ tweets: data.data });
         this.setState({ dataloaded: true });
       })
@@ -41,10 +35,18 @@ export default class Homepage extends React.Component {
 
     return (
       <div>
-        <Container maxWidth='sm'>
-          <TextBoxTweet></TextBoxTweet>
-          <Tweets tweets={tweets}></Tweets>
-        </Container>
+        {/* <Container maxWidth='sm'> */}
+        <Searchbar />
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={9}>
+            <TextBoxTweet></TextBoxTweet>
+            <Tweets tweets={tweets}></Tweets>
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            test
+          </Grid>
+          {/* </Container> */}
+        </Grid>
       </div>
     );
   }
