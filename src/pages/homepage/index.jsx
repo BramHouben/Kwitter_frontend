@@ -15,7 +15,11 @@ export default class Homepage extends React.Component {
   }
 
   componentDidMount() {
-    Instance.get(ApiAction.getTweetList)
+    Instance.get(ApiAction.getTweetList, {
+      params: {
+        page: 0,
+      },
+    })
       .then((data) => {
         console.log("this is data" + data);
         this.setState({ tweets: data.data });

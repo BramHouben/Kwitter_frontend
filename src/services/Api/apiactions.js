@@ -5,7 +5,7 @@ const tweets = `${apiUrl}tweets/`;
 // All paths need to end with a '/'
 
 const actions = {
-  getTweetList: `${tweets}exampletweetlist`,
+  getTweetList: `${tweets}timelinelist`,
   postTweets: `${tweets}`,
   getTweetFromContent: `${tweets}bycontent`,
 };
