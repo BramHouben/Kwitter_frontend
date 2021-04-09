@@ -1,7 +1,7 @@
 import { Component } from "react";
 import TextField from "@material-ui/core/TextField";
-import ApiAction from "../../services/Api/apiactions";
-import Instance from "../../services/Api/axioscreate";
+import ApiAction from "services/Api/apiactions";
+import Instance from "services/Api/axioscreate";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 import "../textboxtweet/textboxtweet.css";
@@ -13,7 +13,10 @@ export default class TextboxTweet extends Component {
       name: "",
       content: "",
       open: false,
+      updateMehod: this.props.handleToUpdate,
     };
+
+    console.log("dit is textbox", this.state.tweets);
   }
 
   showerror = (event) => {
@@ -46,8 +49,8 @@ export default class TextboxTweet extends Component {
       },
     })
       .then((res) => {
-        console.log(res.data);
-        window.location.reload(false);
+        this.state.updateMehod(res.data);
+        this.setState({ content: "" });
       })
       .catch(function (error) {
         alert("no content");
@@ -56,8 +59,7 @@ export default class TextboxTweet extends Component {
   };
 
   render() {
-    // let { lastopen } = this.state.open;
-    // console.log(lastopen);
+    let content = this.state.content;
     return (
       <div id='textboxdiv'>
         {/* <Snackbar
@@ -74,6 +76,7 @@ export default class TextboxTweet extends Component {
           <TextField
             id='content'
             name='content'
+            value={content}
             multiline
             type='text'
             variant='outlined'

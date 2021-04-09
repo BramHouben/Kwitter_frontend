@@ -1,12 +1,12 @@
 import React from "react";
-// import axios from "axios";
+
 import Container from "@material-ui/core/Container";
 import { FormControl } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Input from "@material-ui/core/Input";
 import FormHelperText from "@material-ui/core/FormHelperText";
-import "./../register/index.css";
+import "index.css";
 import InputLabel from "@material-ui/core/InputLabel";
 export default class Homepage extends React.Component {
   constructor() {

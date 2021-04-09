@@ -2,17 +2,18 @@ import React from "react";
 import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
 import { Component } from "react";
-import "../../components/searchbar/searchbar.css";
+import "components/searchbar/searchbar.css";
 
 class Searchbar extends Component {
-  state = {
-    content: "",
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      content: "",
+    };
+  }
   render() {
     return (
       <div>
-        {/* <Container maxWidth='sm'> */}{" "}
         <Box id='boxsearchbar' display='flex' p={2} bgcolor='gray'>
           <TextField
             id='outlined'
@@ -33,7 +34,6 @@ class Searchbar extends Component {
             variant='outlined'
           />
         </Box>
-        {/* </Container> */}
       </div>
     );
   }
