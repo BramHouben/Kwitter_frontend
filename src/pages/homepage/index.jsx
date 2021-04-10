@@ -6,6 +6,7 @@ import ApiAction from "services/Api/apiactions";
 import Instance from "services/Api/axioscreate";
 import Searchbar from "components/searchbar/searchbar";
 import Trendbox from "components/trendbox";
+
 export default class Homepage extends React.Component {
   constructor(props) {
     super(props);

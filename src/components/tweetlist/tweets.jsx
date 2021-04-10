@@ -1,8 +1,14 @@
 import Tweet from "../tweet/tweet";
-import { Component } from "react";
-import "../tweetlist/tweets.css";
-
-class Tweets extends Component {
+import "./tweets.css";
+import React, { Component } from "react";
+export default class tweets extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tweets: this.props.tweets,
+    };
+    console.log(this.state.tweets);
+  }
   render() {
     let { tweets } = this.props;
     return (
@@ -15,5 +21,3 @@ class Tweets extends Component {
     );
   }
 }
-
-export default Tweets;

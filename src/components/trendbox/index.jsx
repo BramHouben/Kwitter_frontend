@@ -9,7 +9,9 @@ import "./index.css";
 export default class Trendbox extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      trends: [],
+    };
   }
 
   generate(element) {
