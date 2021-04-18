@@ -23,6 +23,9 @@ export default class Header extends Component {
               <a key='register' href={routerPaths.Register}>
                 register
               </a>
+              <a key='login' href={routerPaths.Login}>
+                login
+              </a>
             </Toolbar>
           </AppBar>
         </header>
