@@ -7,7 +7,8 @@ import Login from "../pages/login";
 const Router = () => (
   <BrowserRouter>
     <Switch>
-      <Route path={paths.Root} exact component={Homepage} />
+      {/* <Route path={paths.Root} exact component={Homepage} /> */}
+      <Route path={paths.Homepage} exact component={Homepage} />
       <Route path={paths.Register} exact component={Register} />
       <Route path={paths.Login} exact component={Login} />
     </Switch>

@@ -10,6 +10,7 @@ const actions = {
   postTweets: `${tweets}`,
   getTweetFromContent: `${tweets}bycontent`,
   register: `${authentication}register`,
+  login: `${authentication}login`,
 };
 
 export default actions;

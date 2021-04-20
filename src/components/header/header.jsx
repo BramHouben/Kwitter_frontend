@@ -2,6 +2,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import routerPaths from "services/shared/router-paths";
+import Cookies from "js-cookie";
 import "./header.css";
 import React, { Component } from "react";
 
@@ -26,6 +27,7 @@ export default class Header extends Component {
               <a key='login' href={routerPaths.Login}>
                 login
               </a>
+              {/* {username != null ? <p>{username}</p> : <div></div>} */}
             </Toolbar>
           </AppBar>
         </header>

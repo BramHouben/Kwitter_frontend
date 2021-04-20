@@ -45,7 +45,12 @@ export default class registerform extends Component {
     return (
       <div>
         <h1>Register kwetter</h1>
-        <form id='formregister' noValidate autoComplete='off'>
+        <form
+          id='formregister'
+          noValidate
+          autoComplete='off'
+          onSubmit={() => this.registerUser()}
+        >
           <div id='register-username-field'>
             <TextField
               id='register-username'
@@ -70,13 +75,7 @@ export default class registerform extends Component {
             />
           </div>
           <div id='register-button'>
-            <Button
-              variant='outlined'
-              color='primary'
-              onClick={() => this.registerUser()}
-            >
-              register
-            </Button>
+            <Button variant='outlined' color='primary' type='submit'></Button>
           </div>
         </form>
       </div>
