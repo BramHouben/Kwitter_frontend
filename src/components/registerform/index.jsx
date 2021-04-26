@@ -10,8 +10,17 @@ export default class registerform extends Component {
     this.state = {
       username: "",
       password: "",
+      email: "",
     };
   }
+
+  setEmail(newemail) {
+    newemail = newemail.replace(/\s+/g, "");
+    this.setState({
+      email: newemail,
+    });
+  }
+
   setPassword(newpass) {
     this.setState({
       password: newpass,
@@ -19,22 +28,35 @@ export default class registerform extends Component {
   }
 
   setUsername(newusername) {
+    newusername = newusername.replace(/\s+/g, "");
     this.setState({
       username: newusername,
     });
   }
 
-  async registerUser() {
+  async registerUser(e) {
+    e.preventDefault();
     console.log("test");
+    console.log(this.state.email);
     console.log(this.state.username);
     console.log(this.state.password);
     await Instance.post(ApiAction.register, {
       username: this.state.username,
       password: this.state.password,
+      email: this.state.email,
     })
       .then((data) => {
-        console.log(data.status);
-        console.log(data.data);
+        if (data.status === 200) {
+          console.log("good register");
+          alert("registered, go to login");
+          this.setState({
+            username: "",
+            password: "",
+            email: "",
+          });
+
+          window.location.pathname = "/login";
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -48,9 +70,19 @@ export default class registerform extends Component {
         <form
           id='formregister'
           noValidate
-          autoComplete='off'
-          onSubmit={() => this.registerUser()}
+          onSubmit={(e) => this.registerUser(e)}
         >
+          <div id='register-email-field'>
+            <TextField
+              id='register-email'
+              type='email'
+              label='Email'
+              variant='outlined'
+              onChange={(e) => {
+                this.setEmail(e.target.value);
+              }}
+            />
+          </div>
           <div id='register-username-field'>
             <TextField
               id='register-username'
@@ -75,7 +107,9 @@ export default class registerform extends Component {
             />
           </div>
           <div id='register-button'>
-            <Button variant='outlined' color='primary' type='submit'></Button>
+            <Button variant='outlined' color='primary' type='submit'>
+              Register
+            </Button>
           </div>
         </form>
       </div>

@@ -1,6 +1,7 @@
 import { Component } from "react";
 import "moment-timezone";
 import Card from "@material-ui/core/Card";
+import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import "components/tweet/tweet.css";
@@ -20,8 +21,8 @@ export default class Tweet extends Component {
         <Card variant='outlined'>
           <CardContent>
             <div id='momenttime'>
-              {timeTweet + "  "}
-              posted
+              Posted
+              {"   " + timeTweet}
             </div>
             <Typography
               id='tweetusername'

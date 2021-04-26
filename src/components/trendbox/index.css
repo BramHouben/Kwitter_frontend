@@ -5,6 +5,7 @@
     justify-content: right;
     text-align: justify;
      border-radius: 25px;
+     position: relative;
 }
 
 #subheader{
