@@ -7,7 +7,7 @@ import "./header.css";
 
 import React, { Component } from "react";
 
-export class Header extends Component {
+export default class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
