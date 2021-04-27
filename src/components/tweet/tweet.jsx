@@ -1,25 +1,28 @@
-import Proptypes from "prop-types";
 import { Component } from "react";
-import Moment from "react-moment";
 import "moment-timezone";
 import Card from "@material-ui/core/Card";
+import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import "../../components/tweet/tweet.css";
-
-class Tweet extends Component {
+import "components/tweet/tweet.css";
+import moment from "moment";
+import PropTypes from "prop-types";
+export default class Tweet extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tweet: this.props.tweet,
+    };
+  }
   render() {
-    console.log(this.props);
-    let { tweet } = this.props;
+    let timeTweet = moment.utc(this.state.tweet.tweetTime).fromNow();
     return (
       <div className='tweet' id='tweet'>
         <Card variant='outlined'>
           <CardContent>
             <div id='momenttime'>
-              <Moment fromNow ago>
-                {tweet.tweetTime}
-              </Moment>
-              -ago posted
+              Posted
+              {"   " + timeTweet}
             </div>
             <Typography
               id='tweetusername'
@@ -27,19 +30,17 @@ class Tweet extends Component {
               variant='h5'
               component='h2'
             >
-              {tweet.accountName}
+              {this.state.tweet.accountName}
             </Typography>
 
-            <p>{tweet.content}</p>
+            <p>{this.state.tweet.content}</p>
+            <FavoriteBorderOutlinedIcon id='hearthicon' />
           </CardContent>
         </Card>
       </div>
     );
   }
 }
-
 Tweet.propTypes = {
-  tweet: Proptypes.object.isRequired,
+  tweet: PropTypes.object.isRequired,
 };
-
-export default Tweet;

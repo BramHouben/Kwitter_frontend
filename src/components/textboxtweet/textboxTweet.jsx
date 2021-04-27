@@ -1,18 +1,20 @@
 import { Component } from "react";
 import TextField from "@material-ui/core/TextField";
-import ApiAction from "../../services/Api/apiactions";
-import Instance from "../../services/Api/axioscreate";
-import Snackbar from "@material-ui/core/Snackbar";
-import Alert from "@material-ui/lab/Alert";
+import ApiAction from "services/Api/apiactions";
+import Instance from "services/Api/axioscreate";
+import Cookies from "js-cookie";
+// import Snackbar from "@material-ui/core/Snackbar";
+// import Alert from "@material-ui/lab/Alert";
 import "../textboxtweet/textboxtweet.css";
 
 export default class TextboxTweet extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      name: Cookies.get("username"),
       content: "",
       open: false,
+      updateMehod: this.props.handleToUpdate,
     };
   }
 
@@ -41,13 +43,13 @@ export default class TextboxTweet extends Component {
     await Instance.post(ApiAction.postTweets, null, {
       params: {
         // Const for now
-        accountname: "Bram",
+        accountname: this.state.name,
         content: this.state.content,
       },
     })
       .then((res) => {
-        console.log(res.data);
-        window.location.reload(false);
+        this.state.updateMehod(res.data);
+        this.setState({ content: "" });
       })
       .catch(function (error) {
         alert("no content");
@@ -56,8 +58,7 @@ export default class TextboxTweet extends Component {
   };
 
   render() {
-    // let { lastopen } = this.state.open;
-    // console.log(lastopen);
+    let content = this.state.content;
     return (
       <div id='textboxdiv'>
         {/* <Snackbar
@@ -74,6 +75,7 @@ export default class TextboxTweet extends Component {
           <TextField
             id='content'
             name='content'
+            value={content}
             multiline
             type='text'
             variant='outlined'

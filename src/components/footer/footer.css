@@ -1,0 +1,8 @@
+#footer {
+    margin-top: calc(5% + 30px);
+    margin-bottom: 0%;
+   width: 100%;
+   position:sticky;
+   color: whitesmoke;
+    background-color: #3f51b5;
+}

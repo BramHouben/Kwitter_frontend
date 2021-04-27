@@ -1,7 +1,9 @@
 import axios from "axios";
+
 const instance = axios.create({
-  withCredentials: false,
+  withCredentials: true,
   headers: {
+    "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "http://localhost:3000",
   },
 });
