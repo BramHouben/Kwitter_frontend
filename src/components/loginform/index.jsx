@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import ApiAction from "services/Api/apiactions";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import Instance from "services/Api/axioscreate";
+import { connect } from "react-redux";
+
 import "./index.css";
-export default class loginform extends Component {
+class loginform extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,12 +36,10 @@ export default class loginform extends Component {
       password: this.state.password,
     })
       .then((data) => {
-        Cookies.set("auth", data.headers.authorization, { sameSite: "Strict" });
-
-        // if (data.status === 200) {
-        //   window.location.pathname = "/home";
-        // }
-        // useCookies.set("Authorization", data.headers.get("Authorization"));
+        if (data.status === 200) {
+          this.props.loggedIn();
+          window.location.pathname = "/home";
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -86,3 +86,10 @@ export default class loginform extends Component {
     );
   }
 }
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  loggedIn: () => dispatch({ type: "LOGIN" }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(loginform);

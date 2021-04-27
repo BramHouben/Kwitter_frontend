@@ -34,6 +34,7 @@ export default class Tweet extends Component {
             </Typography>
 
             <p>{this.state.tweet.content}</p>
+            <FavoriteBorderOutlinedIcon id='hearthicon' />
           </CardContent>
         </Card>
       </div>

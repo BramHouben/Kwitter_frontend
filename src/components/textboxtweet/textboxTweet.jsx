@@ -2,21 +2,20 @@ import { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import ApiAction from "services/Api/apiactions";
 import Instance from "services/Api/axioscreate";
-import Snackbar from "@material-ui/core/Snackbar";
-import Alert from "@material-ui/lab/Alert";
+import Cookies from "js-cookie";
+// import Snackbar from "@material-ui/core/Snackbar";
+// import Alert from "@material-ui/lab/Alert";
 import "../textboxtweet/textboxtweet.css";
 
 export default class TextboxTweet extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      name: Cookies.get("username"),
       content: "",
       open: false,
       updateMehod: this.props.handleToUpdate,
     };
-
-    console.log("dit is textbox", this.state.tweets);
   }
 
   showerror = (event) => {
@@ -44,7 +43,7 @@ export default class TextboxTweet extends Component {
     await Instance.post(ApiAction.postTweets, null, {
       params: {
         // Const for now
-        accountname: "Bram",
+        accountname: this.state.name,
         content: this.state.content,
       },
     })
