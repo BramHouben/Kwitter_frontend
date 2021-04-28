@@ -43,7 +43,7 @@ export default class TextboxTweet extends Component {
     await Instance.post(ApiAction.postTweets, null, {
       params: {
         // Const for now
-        accountname: this.state.name,
+        accountname: "test",
         content: this.state.content,
       },
     })

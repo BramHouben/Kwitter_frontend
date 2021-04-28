@@ -89,7 +89,7 @@ class loginform extends Component {
 const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({
-  loggedIn: () => dispatch({ type: "LOGIN" }),
+  loggedIn: () => dispatch({ type: "LOGIN", payload: true }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(loginform);
