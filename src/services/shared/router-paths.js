@@ -4,6 +4,7 @@ const paths = {
   Tweet: "/tweets",
   Login: "/login",
   Homepage: "/home",
+  Profile: "/profile",
 };
 
 export default paths;

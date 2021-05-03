@@ -1,18 +1,17 @@
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import routerPaths from "services/shared/router-paths";
-// import Cookies from "js-cookie";
+import { Typography, Button } from "@material-ui/core";
 import "./header.css";
 import { connect } from "react-redux";
-
+import TwitterIcon from "@material-ui/icons/Twitter";
 import React, { Component } from "react";
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "Kwitter",
+      title: "Kwetter",
     };
   }
   render() {
@@ -23,19 +22,28 @@ class Header extends Component {
         <header id='header'>
           <AppBar position='static'>
             <Toolbar>
-              <Typography variant='h6'>{this.state.title}</Typography>
+              <TwitterIcon />
+              <Typography variant='h6' className='title'>
+                {this.state.title}
+              </Typography>
+
               {loggedIn ? (
-                <a key='home' href={routerPaths.Homepage}>
-                  home
-                </a>
+                <div className='loggedInButtons'>
+                  <Button color='inherit' href={routerPaths.Homepage}>
+                    Home
+                  </Button>
+                  <Button color='inherit' href={routerPaths.Profile}>
+                    Profile
+                  </Button>
+                </div>
               ) : (
-                <div>
-                  <a key='register' href={routerPaths.Register}>
-                    register
-                  </a>
-                  <a key='login' href={routerPaths.Login}>
-                    login
-                  </a>
+                <div className='loginregisterfield'>
+                  <Button color='inherit' href={routerPaths.Register}>
+                    Register
+                  </Button>
+                  <Button color='inherit' href={routerPaths.Login}>
+                    Login
+                  </Button>
                 </div>
               )}
             </Toolbar>

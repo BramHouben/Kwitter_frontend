@@ -1,0 +1,18 @@
+:root{
+
+}
+
+#h1title{
+    font-size: 5rem;
+}
+.textlandingpage{
+    margin-top: 8%;
+    justify-content: center;
+    text-align: left;
+}
+.loginbutton{
+    margin: 1%;
+}
+.registerbutton {
+    margin: 1%;
+}
