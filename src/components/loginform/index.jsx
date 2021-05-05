@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import ApiAction from "services/Api/apiactions";
-// import Cookies from "js-cookie";
 import Instance from "services/Api/axioscreate";
 import { connect } from "react-redux";
 

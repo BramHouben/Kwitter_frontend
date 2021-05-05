@@ -1,7 +1,8 @@
-import React, { Component } from "react";
 import LoginForm from "components/loginform";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default class login extends Component {
+export class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,6 +10,9 @@ export default class login extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.loggedOut();
+  }
   render() {
     return (
       <div>
@@ -17,3 +21,11 @@ export default class login extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  loggedOut: () => dispatch({ type: "LOGIN", payload: false }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
