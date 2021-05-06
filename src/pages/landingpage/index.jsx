@@ -18,6 +18,7 @@ export class landingPage extends Component {
             <h2>Tweet what you think and meet new people.</h2>
             <div className='loginbutton'>
               <Button
+                id='btnlogin'
                 variant='contained'
                 color='primary'
                 size='large'
@@ -28,6 +29,7 @@ export class landingPage extends Component {
             </div>
             <div className='registerbutton'>
               <Button
+                id='btnregister'
                 size='large'
                 variant='outlined'
                 color='primary'

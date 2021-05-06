@@ -5,6 +5,7 @@ const paths = {
   Login: "/login",
   Homepage: "/home",
   Profile: "/profile",
+  OtherProfile: "/*",
 };
 
 export default paths;

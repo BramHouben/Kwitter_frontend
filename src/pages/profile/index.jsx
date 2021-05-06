@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Grid from "@material-ui/core/Grid";
 import ApiAction from "services/Api/apiactions";
 import Instance from "services/Api/axioscreate";
 import { Redirect } from "react-router-dom";
+import FollowerDetails from "components/profilepage/followerdetails";
 import TweetsUser from "components/profilepage/tweetsuser";
-import ProfileDetails from "components/profiledetails";
+import ProfileAccount from "components/profilepage/profileaccount";
+import ProfileDetails from "components/profilepage/profiledetails";
+
+import "./index.css";
 export class Profile extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +20,26 @@ export class Profile extends Component {
       tweets: [],
       profile: {},
       page: 0,
+      followerdetails: {},
     };
+  }
+
+  async loadFollowerData() {
+    await Instance.get(ApiAction.getFollowerData, {
+      params: {
+        page: this.state.page,
+      },
+    })
+      .then((data) => {
+        console.log(data);
+        this.setState({
+          followerdetails: data.data,
+          dataloaded: true,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   async loadTweetData() {
@@ -28,7 +52,7 @@ export class Profile extends Component {
         console.log(data);
         this.setState({
           tweets: data.data,
-          dataloaded: true,
+          // dataloaded: true,
         });
       })
       .catch(function (error) {
@@ -36,13 +60,13 @@ export class Profile extends Component {
       });
   }
 
-  async loadProfleData() {
+  async loadAccountData() {
     await Instance.get(ApiAction.getProfileDetails)
       .then((data) => {
         console.log(data);
         this.setState({
           profile: data.data,
-          dataloaded: true,
+          // dataloaded: true,
         });
       })
       .catch(function (error) {
@@ -51,7 +75,11 @@ export class Profile extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.tweets.length !== prevState.tweets.length) {
+    if (
+      this.state.tweets.length !== prevState.tweets.length ||
+      this.state.profile !== prevState.profile ||
+      this.state.followerdetails !== prevState.followerdetails
+    ) {
       // this.loadTweetData();
       console.log("update");
     }
@@ -66,24 +94,48 @@ export class Profile extends Component {
     } else {
       console.log("componentmount");
       this.loadTweetData();
-      this.loadProfleData();
+      this.loadAccountData();
+      // this.loadProfileDetailsData();
+      this.loadFollowerData();
     }
   }
 
   render() {
-    let { redirect, dataloaded, tweets, profile } = this.state;
+    let { redirect, dataloaded, tweets, profile, followerdetails } = this.state;
 
     if (redirect) {
       return <Redirect to='/login' />;
     } else {
       return (
         <div>
-          profile
-          {dataloaded && tweets.length > 0 ? (
+          {dataloaded &&
+          tweets.length > 0 &&
+          profile !== null &&
+          followerdetails !== null ? (
+            // <Grid container spacing={2}
             <div>
-              <ProfileDetails profile={profile} />
-
-              <TweetsUser tweets={tweets} />
+              <Grid container spacing={3}>
+                <Grid item xs={12} sm={6}>
+                  <div className='profileaccount'>
+                    <ProfileAccount profile={profile} />
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <div className='profiledetails'>
+                    <ProfileDetails profile={profile} />
+                  </div>
+                </Grid>
+                <Grid item xs={9} sm={9}>
+                  <div>
+                    <TweetsUser tweets={tweets} />
+                  </div>
+                </Grid>
+                <Grid item xs={3} sm={3}>
+                  <div>
+                    <FollowerDetails followerdetails={followerdetails} />
+                  </div>
+                </Grid>
+              </Grid>
             </div>
           ) : (
             <div>No tweets loaded</div>

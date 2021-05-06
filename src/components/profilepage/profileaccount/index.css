@@ -1,0 +1,9 @@
+.profileimage {
+      border-radius: 50%;
+      width: 10%;
+}
+.profile{
+     justify-content: left;
+     text-align: left;
+     margin-left: 10%;
+}
