@@ -6,7 +6,7 @@ import paths from "../services/shared/router-paths";
 import Register from "../pages/register";
 import Login from "../pages/login";
 import Profile from "../pages/profile";
-import OtherProfile from "../pages/Otherprofile";
+import OtherProfile from "../pages/otherprofile";
 const Router = () => (
   <BrowserRouter>
     <Switch>
