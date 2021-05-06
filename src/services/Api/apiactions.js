@@ -15,7 +15,9 @@ const actions = {
   register: `${authentication}register`,
   login: `${authentication}login`,
   changeProfileDetails: `${profile}profiledetails`,
-  getProfileDetails: `${profile}userprofile`,
+  getProfileAccountDetails: `${profile}userprofile`,
+  getProfileDetails: `${profile}profiledetails`,
+
   getFollowerData: `${follower}details`,
 };
 

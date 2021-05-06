@@ -6,25 +6,25 @@ export class ProfileDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      profile: this.props,
+      profiledetails: this.props,
     };
   }
   componentDidMount() {
-    console.log("new comp profiledetails" + this.state.profile);
+    console.log("new comp profiledetails" + this.state.profiledetails);
   }
   render() {
-    let { profile } = this.state.profile;
+    let { profiledetails } = this.state.profiledetails;
 
     return (
       <div className='profiledetails'>
         <Paper elevation={3}>
-          <h5>Naam: {profile.name} </h5>
-          <h5> Woonplaats: {profile.location}</h5>
+          <h5>Naam: {profiledetails.name} </h5>
+          <h5> Woonplaats: {profiledetails.location}</h5>
           <h5>
             website:
-            <a href={profile.website}>{profile.website}</a>
+            <a href={profiledetails.website}>{profiledetails.website}</a>
           </h5>
-          <h5> Bio: {profile.bio}</h5>
+          <h5> Bio: {profiledetails.bio}</h5>
         </Paper>
       </div>
     );

@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
-
 import "./index.css";
 export class FollowerDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
       followerdetails: this.props,
+      countTotalTweets: this.props,
     };
   }
 
@@ -16,20 +16,20 @@ export class FollowerDetails extends Component {
   }
 
   render() {
+    console.log(this.state.countTotalTweets);
     let { followerdetails } = this.state.followerdetails;
+    let { countTotalTweets } = this.state.countTotalTweets;
     return (
-      <div>
+      <div className='followerdetails'>
         {followerdetails !== null ? (
-          <div className='followerdetails'>
-            <Paper elevation={3}>
-              <h5>
-                {/* todo make list for these 2 items in new components*/}
-                Following {followerdetails.following} Followers{" "}
-                {followerdetails.followers}{" "}
-              </h5>
-            </Paper>
-            {/* <h5>Followers {followerdetails.followers} </h5> */}
-          </div>
+          <Paper elevation={3}>
+            <h5>
+              {/* todo make list for these 2 items in new components*/}
+              Following {followerdetails.following} Followers{" "}
+              {followerdetails.followers}
+            </h5>
+            Count tweets: {countTotalTweets}
+          </Paper>
         ) : (
           <div>No followers loaded</div>
         )}

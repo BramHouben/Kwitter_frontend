@@ -20,6 +20,8 @@ export class Profile extends Component {
       tweets: [],
       profile: {},
       page: 0,
+      profiledetails: {},
+      countTotalTweets: 0,
       followerdetails: {},
     };
   }
@@ -51,7 +53,8 @@ export class Profile extends Component {
       .then((data) => {
         console.log(data);
         this.setState({
-          tweets: data.data,
+          tweets: data.data.tweets,
+          countTotalTweets: data.data.countTotalTweets,
           // dataloaded: true,
         });
       })
@@ -61,7 +64,7 @@ export class Profile extends Component {
   }
 
   async loadAccountData() {
-    await Instance.get(ApiAction.getProfileDetails)
+    await Instance.get(ApiAction.getProfileAccountDetails)
       .then((data) => {
         console.log(data);
         this.setState({
@@ -74,11 +77,26 @@ export class Profile extends Component {
       });
   }
 
+  async loadProfileData() {
+    await Instance.get(ApiAction.getProfileDetails)
+      .then((data) => {
+        console.log(data);
+        this.setState({
+          profiledetails: data.data,
+          // dataloaded: true,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (
       this.state.tweets.length !== prevState.tweets.length ||
       this.state.profile !== prevState.profile ||
-      this.state.followerdetails !== prevState.followerdetails
+      this.state.followerdetails !== prevState.followerdetails ||
+      this.state.profiledetails !== prevState.profiledetails
     ) {
       // this.loadTweetData();
       console.log("update");
@@ -95,13 +113,21 @@ export class Profile extends Component {
       console.log("componentmount");
       this.loadTweetData();
       this.loadAccountData();
-      // this.loadProfileDetailsData();
+      this.loadProfileData();
       this.loadFollowerData();
     }
   }
 
   render() {
-    let { redirect, dataloaded, tweets, profile, followerdetails } = this.state;
+    let {
+      redirect,
+      dataloaded,
+      tweets,
+      profile,
+      followerdetails,
+      profiledetails,
+      countTotalTweets,
+    } = this.state;
 
     if (redirect) {
       return <Redirect to='/login' />;
@@ -122,17 +148,20 @@ export class Profile extends Component {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <div className='profiledetails'>
-                    <ProfileDetails profile={profile} />
+                    <ProfileDetails profiledetails={profiledetails} />
                   </div>
                 </Grid>
-                <Grid item xs={9} sm={9}>
+                <Grid item xs={12} sm={6}>
                   <div>
                     <TweetsUser tweets={tweets} />
                   </div>
                 </Grid>
-                <Grid item xs={3} sm={3}>
+                <Grid item xs={12} sm={6}>
                   <div>
-                    <FollowerDetails followerdetails={followerdetails} />
+                    <FollowerDetails
+                      followerdetails={followerdetails}
+                      countTotalTweets={countTotalTweets}
+                    />
                   </div>
                 </Grid>
               </Grid>
