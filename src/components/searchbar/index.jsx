@@ -1,8 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
-import { Component } from "react";
-import "components/searchbar/searchbar.css";
+import "./index.css";
 
 class Searchbar extends Component {
   constructor(props) {

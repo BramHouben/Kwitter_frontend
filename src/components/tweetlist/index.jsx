@@ -1,13 +1,14 @@
-import Tweet from "../tweet/tweet";
-import "./tweets.css";
+import Tweet from "components/tweet";
+import "./index.css";
 import React, { Component } from "react";
-export default class tweets extends Component {
+
+export default class TweetList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       tweets: this.props.tweets,
     };
-    console.log(this.state.tweets);
+    console.log("tweetlist: " + this.state.tweets);
   }
   render() {
     let { tweets } = this.props;

@@ -1,0 +1,30 @@
+:root{
+
+}
+
+#h1title{
+    font-size: 5rem;
+}
+.textlandingpage{
+    margin-top: 8%;
+    justify-content: center;
+    text-align: left;
+}
+.loginbutton{
+    margin: 1%;
+}
+.registerbutton {
+    margin: 1%;
+}
+
+#btnlogin {
+    border-radius: 12px;
+    min-width: 150px;
+    /* max-width: 100px; */
+}
+
+#btnregister {
+    border-radius: 12px;
+      min-width: 150px;
+    /* max-width: 100px; */
+}

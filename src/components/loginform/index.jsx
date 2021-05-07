@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import ApiAction from "services/Api/apiactions";
-// import Cookies from "js-cookie";
 import Instance from "services/Api/axioscreate";
 import { connect } from "react-redux";
 
 import "./index.css";
-class loginform extends Component {
+class Loginform extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -89,7 +88,7 @@ class loginform extends Component {
 const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({
-  loggedIn: () => dispatch({ type: "LOGIN" }),
+  loggedIn: () => dispatch({ type: "LOGIN", payload: true }),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(loginform);
+export default connect(mapStateToProps, mapDispatchToProps)(Loginform);

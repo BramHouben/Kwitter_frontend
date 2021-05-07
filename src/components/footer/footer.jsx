@@ -1,17 +1,28 @@
 import React, { Component } from "react";
 import "./footer.css";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import Button from "@material-ui/core/Button";
+
 export default class Footer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: "Kwetter Bram Houben",
-    };
+    this.state = {};
   }
   render() {
     return (
       <div>
         <footer id='footer'>
-          <h1>{this.state.title}</h1>
+          <div>
+            <Button
+              className='githubbutton'
+              variant='outlined'
+              color='inherit'
+              href='https://github.com/BramHouben'
+            >
+              Github
+              <GitHubIcon />
+            </Button>
+          </div>
         </footer>
       </div>
     );

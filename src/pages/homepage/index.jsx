@@ -1,10 +1,10 @@
 import React from "react";
-import TextBoxTweet from "components/textboxtweet/textboxTweet";
-import Tweets from "components/tweetlist/tweets";
+import TextBoxTweet from "components/textboxtweet";
+import Tweets from "components/tweetlist";
 import Grid from "@material-ui/core/Grid";
 import ApiAction from "services/Api/apiactions";
 import Instance from "services/Api/axioscreate";
-import Searchbar from "components/searchbar/searchbar";
+import Searchbar from "components/searchbar";
 import Trendbox from "components/trendbox";
 
 export default class Homepage extends React.Component {
