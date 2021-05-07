@@ -5,7 +5,7 @@ import Instance from "services/Api/axioscreate";
 import Cookies from "js-cookie";
 // import Snackbar from "@material-ui/core/Snackbar";
 // import Alert from "@material-ui/lab/Alert";
-import "../textboxtweet/textboxtweet.css";
+import "./index.css";
 
 export default class TextboxTweet extends Component {
   constructor(props) {

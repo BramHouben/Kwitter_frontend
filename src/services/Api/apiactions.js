@@ -7,7 +7,7 @@ const follower = `${apiUrl}followers/`;
 
 // All paths need to end with a '/'
 
-const actions = {
+const apiactions = {
   getTweetList: `${tweets}timelinelist`,
   getTweetsUser: `${tweets}tweetsuser`,
   postTweets: `${tweets}`,
@@ -21,4 +21,4 @@ const actions = {
   getFollowerData: `${follower}details`,
 };
 
-export default actions;
+export default apiactions;

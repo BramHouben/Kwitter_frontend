@@ -8,7 +8,6 @@ import FollowerDetails from "components/profilepage/followerdetails";
 import TweetsUser from "components/profilepage/tweetsuser";
 import ProfileAccount from "components/profilepage/profileaccount";
 import ProfileDetails from "components/profilepage/profiledetails";
-
 import "./index.css";
 export class Profile extends Component {
   constructor(props) {

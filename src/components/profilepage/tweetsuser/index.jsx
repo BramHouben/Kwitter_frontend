@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import TweetList from "components/tweetlist/tweets";
+import TweetList from "components/tweetlist";
 
 export class TweetsUser extends Component {
   constructor(props) {

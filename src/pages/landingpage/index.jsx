@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
-import "../landingpage/index.css";
+import "./index.css";
 import routerPaths from "services/shared/router-paths";
 import Button from "@material-ui/core/Button";
 
-export class landingPage extends Component {
+export class LandingPage extends Component {
   render() {
     return (
       <div>
@@ -49,4 +49,4 @@ const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(landingPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);

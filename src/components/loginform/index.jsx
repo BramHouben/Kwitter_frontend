@@ -6,7 +6,7 @@ import Instance from "services/Api/axioscreate";
 import { connect } from "react-redux";
 
 import "./index.css";
-class loginform extends Component {
+class Loginform extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -91,4 +91,4 @@ const mapDispatchToProps = (dispatch) => ({
   loggedIn: () => dispatch({ type: "LOGIN", payload: true }),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(loginform);
+export default connect(mapStateToProps, mapDispatchToProps)(Loginform);

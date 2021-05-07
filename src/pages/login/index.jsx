@@ -1,7 +1,7 @@
 import LoginForm from "components/loginform";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import "./index.css";
 export class Login extends Component {
   constructor(props) {
     super(props);

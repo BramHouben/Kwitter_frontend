@@ -2,7 +2,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import routerPaths from "services/shared/router-paths";
 import { Typography, Button } from "@material-ui/core";
-import "./header.css";
+import "./index.css";
 import { connect } from "react-redux";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import React, { Component } from "react";

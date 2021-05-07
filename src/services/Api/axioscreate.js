@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const instance = axios.create({
+const axioscreate = axios.create({
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
@@ -8,4 +8,4 @@ const instance = axios.create({
   },
 });
 
-export default instance;
+export default axioscreate;

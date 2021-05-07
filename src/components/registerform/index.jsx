@@ -4,7 +4,7 @@ import "./index.css";
 import Button from "@material-ui/core/Button";
 import ApiAction from "services/Api/apiactions";
 import Instance from "services/Api/axioscreate";
-export default class registerform extends Component {
+export default class Registerform extends Component {
   constructor(props) {
     super(props);
     this.state = {

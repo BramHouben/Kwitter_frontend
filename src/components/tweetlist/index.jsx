@@ -1,6 +1,7 @@
-import Tweet from "../tweet/tweet";
-import "./tweets.css";
+import Tweet from "components/tweet";
+import "./index.css";
 import React, { Component } from "react";
+
 export default class TweetList extends Component {
   constructor(props) {
     super(props);

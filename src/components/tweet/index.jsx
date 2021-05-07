@@ -1,12 +1,13 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import "moment-timezone";
 import Card from "@material-ui/core/Card";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import "components/tweet/tweet.css";
+import "./index.css";
 import moment from "moment";
 import PropTypes from "prop-types";
+
 export default class Tweet extends Component {
   constructor(props) {
     super(props);
