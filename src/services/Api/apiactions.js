@@ -19,6 +19,8 @@ const apiactions = {
   getProfileDetails: `${profile}profiledetails`,
   getProfileDetailsForVisitor: `${profile}profiledetailsforvisitor`,
   getFollowerData: `${follower}details`,
+  followUser: `${follower}followuser`,
+  checkFollowUser: `${follower}followsUser`,
 };
 
 export default apiactions;

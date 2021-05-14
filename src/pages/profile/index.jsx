@@ -36,6 +36,7 @@ export class Profile extends Component {
         this.setState({
           followerdetails: data.data,
           dataloaded: true,
+          redirect: false,
         });
       })
       .catch(function (error) {
@@ -92,12 +93,12 @@ export class Profile extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (
+      this.state.loggedIn !== prevState.loggedIn ||
       this.state.tweets.length !== prevState.tweets.length ||
       this.state.profile !== prevState.profile ||
       this.state.followerdetails !== prevState.followerdetails ||
       this.state.profiledetails !== prevState.profiledetails
     ) {
-      // this.loadTweetData();
       console.log("update");
     }
   }

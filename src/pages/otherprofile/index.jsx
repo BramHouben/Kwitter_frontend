@@ -14,10 +14,71 @@ export class OtherProfile extends Component {
       followsUser: false,
       profileData: null,
     };
+    this.followUser = this.followUser.bind(this);
+    this.CheckFollowsUser = this.CheckFollowsUser.bind(this);
+  }
+
+  CheckFollowsUser(object) {
+    console.log(object.follows);
+    if (!object.follows) {
+      return (
+        <Button
+          id='btnfollowUser'
+          variant='outlined'
+          color='primary'
+          size='large'
+          onClick={this.followUser}
+        >
+          Follow
+        </Button>
+      );
+    }
+    return (
+      <Button
+        id='btnfollowsUser'
+        variant='contained'
+        color='primary'
+        size='large'
+      >
+        Following
+      </Button>
+    );
   }
 
   async followUser() {
     console.log("following");
+    console.log(this.state.profileData.username);
+    await Instance.post(ApiAction.followUser, null, {
+      params: {
+        usernamefollowing: this.state.profileData.username,
+      },
+    }).then((data) => {
+      if (data.status === 200) {
+        this.setState({
+          followsUser: true,
+          // dataloaded: true,
+        });
+      }
+      console.log(data);
+      alert("test");
+    });
+  }
+
+  async checkifUserFollows() {
+    await Instance.get(ApiAction.checkFollowUser, {
+      params: {
+        usernameFollowing: this.props.match.params.username,
+      },
+    })
+      .then((data) => {
+        console.log(data);
+        this.setState({
+          followsUser: true,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   async getProfileData() {
@@ -40,19 +101,21 @@ export class OtherProfile extends Component {
 
   componentDidMount() {
     this.getProfileData();
+    this.checkifUserFollows();
   }
 
   componentDidUpdate(prevState) {
-    if (this.state.followsUser !== prevState.followsUser) {
-      // this.loadTweetData();
+    if (
+      this.state.followsUser !== prevState.followsUser ||
+      this.state.profileData !== prevState.profileData
+    ) {
       console.log("update");
     }
   }
 
   render() {
     let { followsUser, profileData } = this.state;
-    console.log(this.props.match.params.username);
-    console.log(profileData);
+    const CheckFollowsUser = this.CheckFollowsUser;
     console.log(followsUser);
     return (
       <div>
@@ -63,16 +126,7 @@ export class OtherProfile extends Component {
               <Grid item xs={12} sm={6}>
                 <h1>username random user: {profileData.username}</h1>
                 <h2>bio random user: {profileData.bio}</h2>
-
-                <Button
-                  id='btnfollowUser'
-                  variant='contained'
-                  color='primary'
-                  size='large'
-                  onClick={this.followUser}
-                >
-                  Follow
-                </Button>
+                <CheckFollowsUser follows={followsUser} />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <div className='profiledetails'>
