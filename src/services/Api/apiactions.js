@@ -22,6 +22,7 @@ const apiactions = {
   followUser: `${follower}followuser`,
   checkFollowUser: `${follower}followsUser`,
   deleteTweet: `${tweets}`,
+  getMentions: `${tweets}bymention`,
 };
 
 export default apiactions;
