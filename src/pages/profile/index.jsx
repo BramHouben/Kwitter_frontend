@@ -23,6 +23,7 @@ export class Profile extends Component {
       countTotalTweets: 0,
       followerdetails: {},
     };
+    this.removeTweet = this.removeTweet.bind(this);
   }
 
   async loadFollowerData() {
@@ -36,13 +37,18 @@ export class Profile extends Component {
         this.setState({
           followerdetails: data.data,
           dataloaded: true,
+          redirect: false,
         });
       })
       .catch(function (error) {
         console.log(error);
       });
   }
-
+  async removeTweet(e) {
+    const tweets = this.state.tweets.filter((tweet) => tweet.id !== e.id);
+    this.setState({ tweets: tweets });
+    alert("removed tweet");
+  }
   async loadTweetData() {
     await Instance.get(ApiAction.getTweetsUser, {
       params: {
@@ -85,20 +91,27 @@ export class Profile extends Component {
           // dataloaded: true,
         });
       })
-      .catch(function (error) {
+      .catch((error) => {
+        if (error.response.status !== 200) {
+          alert("Login");
+          this.props.loggedOut();
+        }
+
         console.log(error);
       });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (
+      this.state.redirect !== prevState.redirect ||
+      this.state.loggedIn !== prevState.loggedIn ||
       this.state.tweets.length !== prevState.tweets.length ||
       this.state.profile !== prevState.profile ||
       this.state.followerdetails !== prevState.followerdetails ||
       this.state.profiledetails !== prevState.profiledetails
     ) {
-      // this.loadTweetData();
       console.log("update");
+      console.log(this.state.tweets.length);
     }
   }
 
@@ -106,8 +119,8 @@ export class Profile extends Component {
     console.log(this.state.loggedIn);
     if (!this.state.loggedIn) {
       console.log("componentmountfalse");
-
-      this.setState({ redirect: false });
+      console.log("red true");
+      this.setState({ redirect: true });
     } else {
       console.log("componentmount");
       this.loadTweetData();
@@ -127,14 +140,14 @@ export class Profile extends Component {
       profiledetails,
       countTotalTweets,
     } = this.state;
-
+    console.log(tweets);
     if (redirect) {
       return <Redirect to='/login' />;
     } else {
       return (
         <div>
           {dataloaded &&
-          tweets.length > 0 &&
+          tweets.length >= 0 &&
           profile !== null &&
           followerdetails !== null ? (
             // <Grid container spacing={2}
@@ -152,7 +165,7 @@ export class Profile extends Component {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <div>
-                    <TweetsUser tweets={tweets} />
+                    <TweetsUser tweets={tweets} action={this.removeTweet} />
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -176,6 +189,8 @@ export class Profile extends Component {
 
 const mapStateToProps = (state) => ({ loggedIn: state.loggedIn });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => ({
+  loggedOut: () => dispatch({ type: "LOGIN", payload: false }),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -1,25 +1,32 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import TweetList from "components/tweetlist";
+import TweetList from "components/profilepage/tweetListuser";
 
 export class TweetsUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
       tweets: this.props,
+      action: this.props.action,
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.tweets.length !== prevProps.tweets.length) {
+      console.log("update tweetsuser");
+    }
+  }
+
   componentDidMount() {
-    // console.log("new comp tweets" + this.state.tweets);
+    console.log("new comp tweets" + this.state.tweets);
   }
 
   render() {
-    let { tweets } = this.state.tweets;
-    // console.log("new compenent tweets: " + tweets);
+    let { tweets } = this.props;
+    console.log(tweets.length);
     return (
       <div>
-        <TweetList tweets={tweets} />
+        <TweetList tweets={tweets} action={this.state.action} />
       </div>
     );
   }

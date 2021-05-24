@@ -1,18 +1,22 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Snackbar from "@material-ui/core/Snackbar";
 import ApiAction from "services/Api/apiactions";
 import Instance from "services/Api/axioscreate";
 import { connect } from "react-redux";
-
 import "./index.css";
+import Alert from "@material-ui/lab/Alert";
+
 class Loginform extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
       password: "",
+      open: false,
     };
+    this.handleClose = this.handleClose.bind(this);
   }
   setPassword(newpass) {
     this.setState({
@@ -26,10 +30,21 @@ class Loginform extends Component {
     });
   }
 
+  handleClose(event, reason) {
+    this.setState({ open: false });
+
+    if (reason === "clickaway") {
+      return;
+    }
+  }
+
+  componentDidUpdate(prevprops, newprops) {
+    if (prevprops.open !== this.state.open) {
+      console.log("update");
+    }
+  }
+
   async loginUser() {
-    console.log("login");
-    console.log(this.state.username);
-    console.log(this.state.password);
     await Instance.post(ApiAction.login, {
       username: this.state.username,
       password: this.state.password,
@@ -40,7 +55,11 @@ class Loginform extends Component {
           window.location.pathname = "/home";
         }
       })
-      .catch(function (error) {
+      .catch((error) => {
+        if (error.response.status !== 200) {
+          this.setState({ open: true });
+        }
+
         console.log(error);
       });
   }
@@ -81,6 +100,15 @@ class Loginform extends Component {
             Login
           </Button>
         </div>
+        <Snackbar
+          open={this.state.open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+        >
+          <Alert onClose={this.handleClose} severity='error'>
+            Wrong credentials!
+          </Alert>
+        </Snackbar>
       </div>
     );
   }

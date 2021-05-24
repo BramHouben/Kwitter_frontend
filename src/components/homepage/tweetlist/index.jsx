@@ -1,4 +1,4 @@
-import Tweet from "components/tweet";
+import Tweet from "components/homepage/tweet";
 import "./index.css";
 import React, { Component } from "react";
 

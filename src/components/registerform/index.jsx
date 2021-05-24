@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import "./index.css";
+import Alert from "@material-ui/lab/Alert";
+
+import Snackbar from "@material-ui/core/Snackbar";
 import Button from "@material-ui/core/Button";
 import ApiAction from "services/Api/apiactions";
 import Instance from "services/Api/axioscreate";
@@ -11,6 +14,7 @@ export default class Registerform extends Component {
       username: "",
       password: "",
       email: "",
+      open: false,
     };
   }
 
@@ -27,6 +31,14 @@ export default class Registerform extends Component {
     });
   }
 
+  handleClose(event, reason) {
+    this.setState({ open: false });
+
+    if (reason === "clickaway") {
+      return;
+    }
+  }
+
   setUsername(newusername) {
     newusername = newusername.replace(/\s+/g, "");
     this.setState({
@@ -34,6 +46,11 @@ export default class Registerform extends Component {
     });
   }
 
+  componentDidUpdate(prevprops, newprops) {
+    if (prevprops.open !== this.state.open) {
+      console.log("update");
+    }
+  }
   async registerUser(e) {
     e.preventDefault();
     console.log("test");
@@ -59,6 +76,9 @@ export default class Registerform extends Component {
         }
       })
       .catch(function (error) {
+        if (error.response.status !== 200) {
+          this.setState({ open: true });
+        }
         console.log(error);
       });
   }
@@ -111,7 +131,16 @@ export default class Registerform extends Component {
               Register
             </Button>
           </div>
-        </form>
+        </form>{" "}
+        <Snackbar
+          open={this.state.open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+        >
+          <Alert onClose={this.handleClose} severity='error'>
+            Something wrong!
+          </Alert>
+        </Snackbar>
       </div>
     );
   }

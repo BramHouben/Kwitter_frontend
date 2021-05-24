@@ -4,6 +4,7 @@ const tweets = `${apiUrl}tweets/`;
 const authentication = `${apiUrl}authentication/`;
 const profile = `${apiUrl}profiles/`;
 const follower = `${apiUrl}followers/`;
+const like = `${apiUrl}likes/`;
 
 // All paths need to end with a '/'
 
@@ -17,8 +18,14 @@ const apiactions = {
   changeProfileDetails: `${profile}profiledetails`,
   getProfileAccountDetails: `${profile}userprofile`,
   getProfileDetails: `${profile}profiledetails`,
-
+  getProfileDetailsForVisitor: `${profile}profiledetailsforvisitor`,
   getFollowerData: `${follower}details`,
+  followUser: `${follower}followuser`,
+  checkFollowUser: `${follower}followsUser`,
+  deleteTweet: `${tweets}`,
+  getMentions: `${tweets}bymention`,
+  likeTweet: `${like}addlike`,
+  deleteLike: `${like}removelike`,
 };
 
 export default apiactions;
