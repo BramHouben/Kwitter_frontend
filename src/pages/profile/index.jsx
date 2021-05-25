@@ -33,7 +33,6 @@ export class Profile extends Component {
       },
     })
       .then((data) => {
-        console.log(data);
         this.setState({
           followerdetails: data.data,
           dataloaded: true,
@@ -56,7 +55,6 @@ export class Profile extends Component {
       },
     })
       .then((data) => {
-        console.log(data);
         this.setState({
           tweets: data.data.tweets,
           countTotalTweets: data.data.countTotalTweets,
@@ -71,10 +69,8 @@ export class Profile extends Component {
   async loadAccountData() {
     await Instance.get(ApiAction.getProfileAccountDetails)
       .then((data) => {
-        console.log(data);
         this.setState({
           profile: data.data,
-          // dataloaded: true,
         });
       })
       .catch(function (error) {
@@ -85,15 +81,13 @@ export class Profile extends Component {
   async loadProfileData() {
     await Instance.get(ApiAction.getProfileDetails)
       .then((data) => {
-        console.log(data);
         this.setState({
           profiledetails: data.data,
-          // dataloaded: true,
         });
       })
       .catch((error) => {
         if (error.response.status !== 200) {
-          alert("Login");
+          alert("go to login");
           this.props.loggedOut();
         }
 
@@ -110,19 +104,14 @@ export class Profile extends Component {
       this.state.followerdetails !== prevState.followerdetails ||
       this.state.profiledetails !== prevState.profiledetails
     ) {
-      console.log("update");
       console.log(this.state.tweets.length);
     }
   }
 
   componentDidMount() {
-    console.log(this.state.loggedIn);
     if (!this.state.loggedIn) {
-      console.log("componentmountfalse");
-      console.log("red true");
       this.setState({ redirect: true });
     } else {
-      console.log("componentmount");
       this.loadTweetData();
       this.loadAccountData();
       this.loadProfileData();
@@ -140,7 +129,7 @@ export class Profile extends Component {
       profiledetails,
       countTotalTweets,
     } = this.state;
-    console.log(tweets);
+
     if (redirect) {
       return <Redirect to='/login' />;
     } else {

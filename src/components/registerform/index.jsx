@@ -53,10 +53,7 @@ export default class Registerform extends Component {
   }
   async registerUser(e) {
     e.preventDefault();
-    console.log("test");
-    console.log(this.state.email);
-    console.log(this.state.username);
-    console.log(this.state.password);
+
     await Instance.post(ApiAction.register, {
       username: this.state.username,
       password: this.state.password,
@@ -64,7 +61,6 @@ export default class Registerform extends Component {
     })
       .then((data) => {
         if (data.status === 200) {
-          console.log("good register");
           alert("registered, go to login");
           this.setState({
             username: "",

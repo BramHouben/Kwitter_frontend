@@ -4,7 +4,6 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import ApiAction from "services/Api/apiactions";
 import ProfileDetails from "components/profilepage/profiledetails";
-
 import Instance from "services/Api/axioscreate";
 export class OtherProfile extends Component {
   constructor(props) {
@@ -19,7 +18,6 @@ export class OtherProfile extends Component {
   }
 
   CheckFollowsUser(object) {
-    console.log(object.follows);
     if (!object.follows) {
       return (
         <Button
@@ -46,8 +44,6 @@ export class OtherProfile extends Component {
   }
 
   async followUser() {
-    console.log("following");
-    console.log(this.state.profileData.username);
     await Instance.post(ApiAction.followUser, null, {
       params: {
         usernamefollowing: this.state.profileData.username,
@@ -56,11 +52,8 @@ export class OtherProfile extends Component {
       if (data.status === 200) {
         this.setState({
           followsUser: true,
-          // dataloaded: true,
         });
       }
-      console.log(data);
-      alert("test");
     });
   }
 
@@ -71,10 +64,15 @@ export class OtherProfile extends Component {
       },
     })
       .then((data) => {
-        console.log(data);
-        this.setState({
-          followsUser: true,
-        });
+        if (data.data === false) {
+          this.setState({
+            followsUser: false,
+          });
+        } else {
+          this.setState({
+            followsUser: true,
+          });
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -88,10 +86,8 @@ export class OtherProfile extends Component {
       },
     })
       .then((data) => {
-        console.log(data);
         this.setState({
           profileData: data.data,
-          // dataloaded: true,
         });
       })
       .catch(function (error) {
@@ -121,7 +117,6 @@ export class OtherProfile extends Component {
       <div>
         {profileData !== null ? (
           <div>
-            goed
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
                 <h1>username random user: {profileData.username}</h1>
@@ -136,7 +131,7 @@ export class OtherProfile extends Component {
             </Grid>
           </div>
         ) : (
-          <div>fout</div>
+          <div>error loading</div>
         )}
       </div>
     );

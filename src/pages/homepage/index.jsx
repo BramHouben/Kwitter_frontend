@@ -36,7 +36,7 @@ export default class Homepage extends React.Component {
     await Instance.get(ApiAction.getTimeline, {
       params: {
         page: 0,
-        eventid: 0,
+        eventid: 1,
       },
     })
       .then((data) => {
