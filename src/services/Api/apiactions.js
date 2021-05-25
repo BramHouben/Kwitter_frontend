@@ -5,6 +5,8 @@ const authentication = `${apiUrl}authentication/`;
 const profile = `${apiUrl}profiles/`;
 const follower = `${apiUrl}followers/`;
 const like = `${apiUrl}likes/`;
+const timeline = `${apiUrl}timeline/`;
+const trending = `${apiUrl}trending/`;
 
 // All paths need to end with a '/'
 
@@ -26,6 +28,8 @@ const apiactions = {
   getMentions: `${tweets}bymention`,
   likeTweet: `${like}addlike`,
   deleteLike: `${like}removelike`,
+  getTimeline: `${timeline}`,
+  getTrends: `${trending}`,
 };
 
 export default apiactions;
