@@ -33,9 +33,10 @@ export default class Homepage extends React.Component {
   }
 
   async getApiData() {
-    await Instance.get(ApiAction.getTweetList, {
+    await Instance.get(ApiAction.getTimeline, {
       params: {
         page: 0,
+        eventid: 0,
       },
     })
       .then((data) => {

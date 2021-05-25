@@ -14,7 +14,6 @@ export class ProfileDetails extends Component {
   }
   render() {
     let { profiledetails } = this.state.profiledetails;
-
     return (
       <div className='profiledetails'>
         <Paper elevation={3}>
