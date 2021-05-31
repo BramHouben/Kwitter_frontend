@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
 import "./index.css";
+
 export class ProfileDetails extends Component {
   constructor(props) {
     super(props);
@@ -9,6 +10,7 @@ export class ProfileDetails extends Component {
       profiledetails: this.props,
     };
   }
+
   componentDidMount() {
     console.log("new comp profiledetails" + this.state.profiledetails);
   }
