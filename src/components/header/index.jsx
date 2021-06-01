@@ -22,7 +22,7 @@ class Header extends Component {
       .then((data) => {
         // this.props.loggedOut();
         console.log(data);
-        // window.location.pathname = "/login";
+        window.location.pathname = "/login";
       })
       .catch((error) => {
         console.log(error);

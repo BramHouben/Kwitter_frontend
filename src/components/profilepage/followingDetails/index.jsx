@@ -14,8 +14,7 @@ export default class FollowingDetails extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
   }
-  handleChange(event, value) {
-    console.log(value);
+  async handleChange(event, value) {
     this.setState({
       page: value - 1,
     });
@@ -24,26 +23,35 @@ export default class FollowingDetails extends Component {
   componentDidMount() {
     console.log("new comp following" + this.state.followingdetails);
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.followingdetails !== prevState.followingdetails) {
-      console.log("update");
+
+  componentDidUpdate(prevprops) {
+    if (prevprops.followingdetails !== this.props.followingdetails) {
+      console.log("update component following");
     }
   }
+
+  async redirectProfile(e) {
+    window.location.pathname = "/" + e;
+  }
+
   render() {
-    let { followingdetails } = this.state;
-    console.log(this.state.followingdetails);
+    //todo fix the props and state
+    // const { followingdetails, page } = this.state;
+    // console.log(followingdetails);
     return (
       <div>
         <div className='followingdetails'>
-          {Object.keys(this.state.followingdetails).length !== 0 ? (
+          {this.props.followingdetails !== null ? (
             <Paper elevation={3}>
               <h5>Following</h5>
               <List dense compoent='span'>
-                {followingdetails.following.map((follow) => (
+                {this.props.followingdetails.following.map((follow) => (
                   <ListItem
                     key={follow}
                     button
-                    onClick={() => console.log(follow)}
+                    onClick={(e) => {
+                      this.redirectProfile(follow);
+                    }}
                   >
                     <ListItemText id={follow} primary={follow} />
                   </ListItem>
@@ -51,8 +59,10 @@ export default class FollowingDetails extends Component {
               </List>
               <Box component='span'>
                 <Pagination
-                  count={Math.ceil(followingdetails.countFollowing / 10)}
-                  page={this.state.page}
+                  count={Math.ceil(
+                    this.props.followingdetails.countFollowing / 10
+                  )}
+                  page={this.props.page}
                   defaultPage={1}
                   color='primary'
                   size='small'

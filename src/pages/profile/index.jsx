@@ -123,7 +123,7 @@ export class Profile extends Component {
         this.setState({
           followingDetails: data.data,
         });
-        console.log(this.state.followingDetails);
+        console.log(this.state.followingDetails.following);
       })
       .catch((error) => {
         console.log(error);
@@ -189,7 +189,6 @@ export class Profile extends Component {
           tweets.length >= 0 &&
           Object.keys(this.state.profile).length !== 0 &&
           Object.keys(this.state.profiledetails).length !== 0 &&
-          Object.keys(this.state.followingDetails).length !== 0 &&
           Object.keys(this.state.followerdetails).length !== 0 ? (
             // <Grid container spacing={2}
             <div>
@@ -217,12 +216,16 @@ export class Profile extends Component {
                       countTotalTweets={countTotalTweets}
                     />
                   </div>
-                  <div>
-                    <FollowingDetails
-                      pageChanged={(value) => this.pageChanged(value)}
-                      followingdetails={followingDetails}
-                    />
-                  </div>
+                  {Object.keys(this.state.followingDetails).length !== 0 ? (
+                    <div>
+                      <FollowingDetails
+                        pageChanged={(value) => this.pageChanged(value)}
+                        followingdetails={followingDetails}
+                      />
+                    </div>
+                  ) : (
+                    <div>data cant be loaded</div>
+                  )}
                   <div className='deleteAccountBtn'>
                     <Button
                       onClick={this.deleteProfile}
