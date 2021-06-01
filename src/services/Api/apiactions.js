@@ -34,6 +34,7 @@ const apiactions = {
   getTimeline: `${timeline}`,
   getTrends: `${trending}`,
   removeAccount: `${authentication}`,
+  logout: `${authentication}logout`,
 };
 
 export default apiactions;

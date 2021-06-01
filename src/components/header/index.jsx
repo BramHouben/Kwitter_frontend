@@ -3,6 +3,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import routerPaths from "services/shared/router-paths";
 import { Typography, Button } from "@material-ui/core";
 import "./index.css";
+import ApiAction from "services/Api/apiactions";
+import Instance from "services/Api/axioscreate";
 import { connect } from "react-redux";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import React, { Component } from "react";
@@ -12,8 +14,21 @@ class Header extends Component {
     super(props);
     this.state = {
       title: "Kwetter",
+      loggedIn: props.loggedIn,
     };
   }
+  async logout() {
+    await Instance.put(ApiAction.logout)
+      .then((data) => {
+        // this.props.loggedOut();
+        console.log(data);
+        // window.location.pathname = "/login";
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   render() {
     const loggedIn = this.props.loggedIn;
     console.log(loggedIn);
@@ -34,6 +49,9 @@ class Header extends Component {
                   </Button>
                   <Button color='inherit' href={routerPaths.Profile}>
                     Profile
+                  </Button>
+                  <Button color='inherit' onClick={this.logout}>
+                    Logout
                   </Button>
                 </div>
               ) : (
@@ -57,6 +75,8 @@ const mapStateToProps = (state) => ({
   loggedIn: state.loggedIn,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => ({
+  loggedOut: () => dispatch({ type: "LOGIN", payload: false }),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
