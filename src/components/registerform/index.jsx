@@ -127,7 +127,7 @@ export default class Registerform extends Component {
               Register
             </Button>
           </div>
-        </form>{" "}
+        </form>
         <Snackbar
           open={this.state.open}
           autoHideDuration={6000}

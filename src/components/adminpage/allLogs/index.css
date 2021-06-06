@@ -1,0 +1,13 @@
+#logs {
+    text-align: center;
+    border-collapse: collapse;
+    border: 2px solid #ddd;
+    width: 70%;
+    
+}
+
+#logs td,
+#logs th {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
