@@ -8,8 +8,8 @@ export default class FollowingDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      followingdetails: this.props.followingdetails,
-      page: 1,
+      // followingdetails: this.props.followingdetails,
+      // page: 1,
       pageChanged: this.props.pageChanged,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -35,17 +35,18 @@ export default class FollowingDetails extends Component {
   }
 
   render() {
+    const { followingdetails, page } = this.props;
     //todo fix the props and state
     // const { followingdetails, page } = this.state;
     // console.log(followingdetails);
     return (
       <div>
         <div className='followingdetails'>
-          {this.props.followingdetails !== null ? (
+          {followingdetails !== null ? (
             <Paper elevation={3}>
               <h5>Following</h5>
               <List dense compoent='span'>
-                {this.props.followingdetails.following.map((follow) => (
+                {followingdetails.following.map((follow) => (
                   <ListItem
                     key={follow}
                     button
@@ -59,10 +60,8 @@ export default class FollowingDetails extends Component {
               </List>
               <Box component='span'>
                 <Pagination
-                  count={Math.ceil(
-                    this.props.followingdetails.countFollowing / 10
-                  )}
-                  page={this.props.page}
+                  count={Math.ceil(followingdetails.countFollowing / 10)}
+                  page={page}
                   defaultPage={1}
                   color='primary'
                   size='small'

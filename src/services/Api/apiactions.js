@@ -9,6 +9,7 @@ const like = `${apiUrl}likes/`;
 const timeline = `${apiUrl}timeline/`;
 const trending = `${apiUrl}trending/`;
 const moderation = `${apiUrl}moderation/`;
+const logging = `${apiUrl}logging/`;
 
 // All paths need to end with a '/'
 
@@ -35,6 +36,9 @@ const apiactions = {
   getTrends: `${trending}`,
   removeAccount: `${authentication}`,
   logout: `${authentication}logout`,
+  getLogs: `${logging}all`,
+  checkModeration: `${moderation}check`,
+  getlatestTweets: `${moderation}getlatesttweets`,
 };
 
 export default apiactions;

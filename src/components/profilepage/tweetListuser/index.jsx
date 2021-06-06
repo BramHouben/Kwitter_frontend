@@ -18,10 +18,9 @@ export default class TweetListUser extends Component {
   }
   render() {
     let { tweets } = this.props;
-    console.log(tweets);
     return (
       <div id='tweetlist'>
-        <h1>My tweets</h1>
+        <h1>Tweets</h1>
         {tweets.map((tweet) => (
           <Tweet key={tweet.id} tweet={tweet} action={this.state.action} />
         ))}
