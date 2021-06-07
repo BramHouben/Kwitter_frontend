@@ -54,7 +54,7 @@ export const Put = async (action, json = null) => {
       credentials: false,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "20.76.149.178",
+        "Access-Control-Allow-Origin": "http://20.76.149.178",
         // "Access-Control-Allow-Origin": "http://localhost:3000",
       },
 
