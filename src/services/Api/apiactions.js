@@ -1,5 +1,5 @@
-// const apiUrl = "http://20.76.155.99:8081/";
-const apiUrl = "http://localhost:8081/";
+const apiUrl = "http://20.76.155.99:8081/";
+// const apiUrl = "http://localhost:8081/";
 
 const tweets = `${apiUrl}tweets/`;
 const authentication = `${apiUrl}authentication/`;
@@ -39,6 +39,7 @@ const apiactions = {
   getLogs: `${logging}all`,
   checkModeration: `${moderation}check`,
   getlatestTweets: `${moderation}getlatesttweets`,
+  getLogDetails: `${logging}details`,
 };
 
 export default apiactions;
