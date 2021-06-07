@@ -7,7 +7,7 @@ export const Get = async (action) => {
       credentials: false,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://20.76.149.178",
+        "Access-Control-Allow-Origin": "http://20.76.150.1",
         // "Access-Control-Allow-Origin": "http://localhost:3000",
       },
 
@@ -30,7 +30,7 @@ export const Post = async (action, json = null) => {
       credentials: false,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://20.76.149.178",
+        "Access-Control-Allow-Origin": "http://20.76.150.1",
         // "Access-Control-Allow-Origin": "http://localhost:3000",
       },
 
@@ -54,7 +54,7 @@ export const Put = async (action, json = null) => {
       credentials: false,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://20.76.149.178",
+        "Access-Control-Allow-Origin": "http://20.76.150.1",
         // "Access-Control-Allow-Origin": "http://localhost:3000",
       },
 
@@ -78,7 +78,7 @@ export const Delete = async (action, json = null) => {
       credentials: false,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://20.76.149.178",
+        "Access-Control-Allow-Origin": "http://20.76.150.1",
         // "Access-Control-Allow-Origin": "http://localhost:3000",
       },
 
