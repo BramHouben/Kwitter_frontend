@@ -7,8 +7,8 @@ export const Get = async (action) => {
       credentials: false,
       headers: {
         "Content-Type": "application/json",
-        // "Access-Control-Allow-Origin": "http://20.76.155.144",
-        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Origin": "http://20.76.155.144",
+        // "Access-Control-Allow-Origin": "http://localhost:3000",
       },
 
       redirect: "follow",
@@ -30,8 +30,8 @@ export const Post = async (action, json = null) => {
       credentials: false,
       headers: {
         "Content-Type": "application/json",
-        // "Access-Control-Allow-Origin": "http://20.76.155.144",
-        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Origin": "http://20.76.155.144",
+        // "Access-Control-Allow-Origin": "http://localhost:3000",
       },
 
       redirect: "follow",
