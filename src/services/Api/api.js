@@ -1,4 +1,6 @@
 export const Get = async (action) => {
+  const origin = "http://20.76.189.168";
+  // const origin = "http://localhost:3000";
   try {
     const response = await fetch(action, {
       method: "GET",
@@ -7,8 +9,8 @@ export const Get = async (action) => {
       credentials: false,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://20.76.189.168",
-        // "Access-Control-Allow-Origin": "http://localhost:3000",
+        // "Access-Control-Allow-Origin": "http://20.76.189.168",
+        "Access-Control-Allow-Origin": origin,
       },
 
       redirect: "follow",
@@ -30,8 +32,8 @@ export const Post = async (action, json = null) => {
       credentials: false,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://20.76.189.168",
-        // "Access-Control-Allow-Origin": "http://localhost:3000",
+        // "Access-Control-Allow-Origin": "http://20.76.189.168",
+        "Access-Control-Allow-Origin": origin,
       },
 
       redirect: "follow",
@@ -54,8 +56,8 @@ export const Put = async (action, json = null) => {
       credentials: false,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://20.76.189.168",
-        // "Access-Control-Allow-Origin": "http://localhost:3000",
+        // "Access-Control-Allow-Origin": "http://20.76.189.168",
+        "Access-Control-Allow-Origin": origin,
       },
 
       redirect: "follow",
@@ -78,8 +80,8 @@ export const Delete = async (action, json = null) => {
       credentials: false,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://20.76.189.168",
-        // "Access-Control-Allow-Origin": "http://localhost:3000",
+        // "Access-Control-Allow-Origin": "http://20.76.189.168",
+        "Access-Control-Allow-Origin": origin,
       },
 
       redirect: "follow",
