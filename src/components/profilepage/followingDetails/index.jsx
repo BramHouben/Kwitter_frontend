@@ -31,7 +31,7 @@ export default class FollowingDetails extends Component {
   }
 
   async redirectProfile(e) {
-    window.location.pathname = "/" + e;
+    window.location.pathname = "/profile/" + e;
   }
 
   render() {
