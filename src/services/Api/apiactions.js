@@ -1,4 +1,4 @@
-const apiUrl = "http://20.76.149.178:8081/";
+const apiUrl = "http://20.76.186.200:8081/";
 // const apiUrl = "http://localhost:8081/";
 
 const tweets = `${apiUrl}tweets/`;
