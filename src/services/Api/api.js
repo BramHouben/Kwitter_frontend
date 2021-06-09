@@ -1,5 +1,5 @@
 export const Get = async (action) => {
-  const origin = "http://20.76.189.168";
+  const origin = "http://20.76.250.160";
   // const origin = "http://localhost:3000";
   try {
     const response = await fetch(action, {
@@ -9,7 +9,6 @@ export const Get = async (action) => {
       credentials: false,
       headers: {
         "Content-Type": "application/json",
-        // "Access-Control-Allow-Origin": "http://20.76.189.168",
         "Access-Control-Allow-Origin": origin,
       },
 
@@ -32,7 +31,6 @@ export const Post = async (action, json = null) => {
       credentials: false,
       headers: {
         "Content-Type": "application/json",
-        // "Access-Control-Allow-Origin": "http://20.76.189.168",
         "Access-Control-Allow-Origin": origin,
       },
 
@@ -56,7 +54,6 @@ export const Put = async (action, json = null) => {
       credentials: false,
       headers: {
         "Content-Type": "application/json",
-        // "Access-Control-Allow-Origin": "http://20.76.189.168",
         "Access-Control-Allow-Origin": origin,
       },
 
@@ -80,7 +77,6 @@ export const Delete = async (action, json = null) => {
       credentials: false,
       headers: {
         "Content-Type": "application/json",
-        // "Access-Control-Allow-Origin": "http://20.76.189.168",
         "Access-Control-Allow-Origin": origin,
       },
 

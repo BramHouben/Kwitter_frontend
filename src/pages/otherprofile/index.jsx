@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import Snackbar from "@material-ui/core/Snackbar";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import ApiAction from "services/Api/apiactions";
 import ProfileDetails from "components/profilepage/profiledetails";
 import Instance from "services/Api/axioscreate";
+import TweetList from "components/homepage/tweetlist";
+import Alert from "@material-ui/lab/Alert";
 export class OtherProfile extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +15,11 @@ export class OtherProfile extends Component {
       loggedIn: props.loggedIn,
       followsUser: false,
       profileData: null,
+      tweetsUser: [],
+      open: false,
     };
+    this.handleClose = this.handleClose.bind(this);
+
     this.followUser = this.followUser.bind(this);
     this.CheckFollowsUser = this.CheckFollowsUser.bind(this);
   }
@@ -48,13 +55,20 @@ export class OtherProfile extends Component {
       params: {
         usernamefollowing: this.state.profileData.username,
       },
-    }).then((data) => {
-      if (data.status === 200) {
-        this.setState({
-          followsUser: true,
-        });
-      }
-    });
+    })
+      .then((data) => {
+        if (data.status === 200) {
+          this.setState({
+            followsUser: true,
+          });
+        }
+      })
+      .catch((error) => {
+        if (error.response.status !== 200) {
+          this.setState({ open: true });
+        }
+        console.log(error);
+      });
   }
 
   async checkifUserFollows() {
@@ -94,33 +108,59 @@ export class OtherProfile extends Component {
         console.log(error);
       });
   }
+  async getTweetsUser() {
+    await Instance.get(ApiAction.getTweetsUserVisit, {
+      params: {
+        page: 0,
+        usernamevisit: this.props.match.params.username,
+      },
+    })
+      .then((data) => {
+        this.setState({
+          tweetsUser: data.data,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
+  handleClose(event, reason) {
+    this.setState({ open: false });
+
+    if (reason === "clickaway") {
+      return;
+    }
+  }
   componentDidMount() {
     this.getProfileData();
     this.checkifUserFollows();
+    this.getTweetsUser();
   }
 
   componentDidUpdate(prevState) {
     if (
       this.state.followsUser !== prevState.followsUser ||
-      this.state.profileData !== prevState.profileData
+      this.state.profileData !== prevState.profileData ||
+      this.state.tweetsUser !== prevState.tweetsUser ||
+      this.state.open !== prevState.state.open
     ) {
       console.log("update");
     }
   }
 
   render() {
-    let { followsUser, profileData } = this.state;
+    let { followsUser, profileData, tweetsUser } = this.state;
     const CheckFollowsUser = this.CheckFollowsUser;
-    console.log(followsUser);
+    console.log(tweetsUser);
     return (
       <div>
-        {profileData !== null ? (
+        {profileData !== null && tweetsUser !== null ? (
           <div>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6}>
-                <h1>username random user: {profileData.username}</h1>
-                <h2>bio random user: {profileData.bio}</h2>
+                <h1>{profileData.username}</h1>
+                <h2>{profileData.bio}</h2>
                 <CheckFollowsUser follows={followsUser} />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -129,10 +169,24 @@ export class OtherProfile extends Component {
                 </div>
               </Grid>
             </Grid>
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6}>
+                <TweetList tweets={tweetsUser} />
+              </Grid>
+            </Grid>
           </div>
         ) : (
           <div>error loading</div>
         )}
+        <Snackbar
+          open={this.state.open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+        >
+          <Alert onClose={this.handleClose} severity='error'>
+            Cant follow user!
+          </Alert>
+        </Snackbar>
       </div>
     );
   }
