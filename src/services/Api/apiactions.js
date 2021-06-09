@@ -1,4 +1,4 @@
-const apiUrl = "http://20.76.186.200:8081/";
+const apiUrl = "http://20.76.250.131:8081/";
 // const apiUrl = "http://localhost:8081/";
 
 const tweets = `${apiUrl}tweets/`;
@@ -16,6 +16,7 @@ const logging = `${apiUrl}logging/`;
 const apiactions = {
   getTweetList: `${tweets}timelinelist`,
   getTweetsUser: `${tweets}tweetsuser`,
+  getTweetsUserVisit: `${tweets}tweetsuservisit`,
   postTweets: `${tweets}`,
   getTweetFromContent: `${tweets}bycontent`,
   register: `${authentication}register`,

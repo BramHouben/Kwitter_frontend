@@ -2,8 +2,13 @@
     margin-left: 5%;
     justify-content:left;
     text-align: justify;
+
 }
 #alertnocontent{
     width: 100%;
     
+}
+
+.btnSend{
+    margin-top: 5%;
 }

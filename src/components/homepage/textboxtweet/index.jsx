@@ -1,8 +1,10 @@
 import { Component } from "react";
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 import ApiAction from "services/Api/apiactions";
 import Instance from "services/Api/axioscreate";
 import "./index.css";
+import SendIcon from "@material-ui/icons/Send";
 
 export default class TextboxTweet extends Component {
   constructor(props) {
@@ -47,7 +49,7 @@ export default class TextboxTweet extends Component {
         this.setState({ content: "" });
       })
       .catch(function (error) {
-        alert("no content");
+        alert("Make a nicer tweet");
         console.log(error);
       });
   };
@@ -56,28 +58,28 @@ export default class TextboxTweet extends Component {
     let content = this.state.content;
     return (
       <div id='textboxdiv'>
-        {/* <Snackbar
-          open={lastopen}
-          autoHideDuration={6000}
-          onClose={this.handleClose()}
-        >
-          <Alert onClose={this.handleClose()} severity='error'>
-            This is a success message!
-          </Alert>
-        </Snackbar> */}
         <h1> What's happening? </h1>
         <form onSubmit={this.handleSubmit}>
-          <TextField
-            id='content'
-            name='content'
-            value={content}
-            multiline
-            type='text'
-            variant='outlined'
-            onChange={this.handleChangeContent}
-          />
           <div>
-            <button type='submit'>Send tweet</button>
+            <TextField
+              id='content'
+              name='content'
+              value={content}
+              multiline
+              type='text'
+              variant='outlined'
+              onChange={this.handleChangeContent}
+            />
+          </div>
+          <div className='btnSend'>
+            <Button
+              variant='contained'
+              color='primary'
+              type='submit'
+              endIcon={<SendIcon>send</SendIcon>}
+            >
+              Send tweet
+            </Button>
           </div>
         </form>
       </div>
