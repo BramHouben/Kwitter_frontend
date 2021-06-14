@@ -18,6 +18,7 @@ const apiactions = {
   getTweetsUser: `${tweets}tweetsuser`,
   getTweetsUserVisit: `${tweets}tweetsuservisit`,
   postTweets: `${tweets}`,
+  checkForRole: `${authentication}checkrole`,
   getTweetFromContent: `${tweets}bycontent`,
   register: `${authentication}register`,
   login: `${authentication}login`,

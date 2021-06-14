@@ -51,8 +51,8 @@ class Loginform extends Component {
     })
       .then((data) => {
         if (data.status === 200) {
-          this.props.loggedIn();
-          window.location.pathname = "/home";
+          // this.props.loggedIn();
+          this.checkforRedirect();
         }
       })
       .catch((error) => {
@@ -60,6 +60,19 @@ class Loginform extends Component {
           this.setState({ open: true });
         }
 
+        console.log(error);
+      });
+  }
+
+  async checkforRedirect() {
+    await Instance.get(ApiAction.checkForRole, {})
+      .then((data) => {
+        if (data.status === 200) {
+          this.props.loggedIn();
+          window.location.pathname = data.data;
+        }
+      })
+      .catch((error) => {
         console.log(error);
       });
   }

@@ -95,10 +95,10 @@ export class Profile extends Component {
         });
       })
       .catch((error) => {
-        if (error.response.status !== 200) {
-          alert("go to login");
-          this.props.loggedOut();
-        }
+        // if (error.response.status !== 200) {
+        //   alert("go to login");
+        //   this.props.loggedOut();
+        // }
 
         console.log(error);
       });
@@ -123,7 +123,6 @@ export class Profile extends Component {
         this.setState({
           followingDetails: data.data,
         });
-        console.log(this.state.followingDetails.following);
       })
       .catch((error) => {
         console.log(error);
@@ -240,7 +239,7 @@ export class Profile extends Component {
               </Grid>
             </div>
           ) : (
-            <div>No tweets loaded</div>
+            <div>Data cant be loaded</div>
           )}
         </div>
       );
