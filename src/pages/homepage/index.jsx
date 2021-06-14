@@ -45,7 +45,7 @@ export default class Homepage extends React.Component {
       })
       .catch(function (error) {
         console.log(error);
-        window.location.pathname = "/login";
+        // window.location.pathname = "/login";
       });
   }
 
@@ -80,7 +80,7 @@ export default class Homepage extends React.Component {
             <Mentions mentions={mentions}></Mentions>
           </Grid>
           <Grid item xs={12} sm={3}>
-            <Trendbox></Trendbox>
+            <Trendbox />
           </Grid>
         </Grid>
       </div>

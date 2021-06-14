@@ -67,7 +67,7 @@ export default class Trendbox extends Component {
                 </div>
               ))
             ) : (
-              <div></div>
+              <div>No trends loaded</div>
             )}
           </List>
         </Box>
