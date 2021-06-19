@@ -1,8 +1,8 @@
 import { Redirect } from "react-router";
 
 export const Get = async (action) => {
-  // const origin = "http://20.76.250.160";
-  const origin = "http://localhost:3000";
+  const origin = "http://20.76.230.89";
+  // const origin = "http://localhost:3000";
   try {
     const response = await fetch(action, {
       method: "GET",
