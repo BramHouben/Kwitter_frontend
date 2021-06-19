@@ -16,6 +16,7 @@ export default class Registerform extends Component {
       email: "",
       open: false,
     };
+    this.handleClose = this.handleClose.bind(this);
   }
 
   setEmail(newemail) {
@@ -71,7 +72,7 @@ export default class Registerform extends Component {
           window.location.pathname = "/login";
         }
       })
-      .catch(function (error) {
+      .catch((error) => {
         if (error.response.status !== 200) {
           this.setState({ open: true });
         }
