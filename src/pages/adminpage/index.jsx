@@ -5,6 +5,7 @@ import ApiAction from "services/Api/apiactions";
 import Instance from "services/Api/axioscreate";
 import "./index.css";
 import AllLogs from "components/adminpage/allLogs";
+import AllUsers from "components/adminpage/userlist";
 //import this component because it's the same
 import Tweetsusers from "components/profilepage/tweetsuser";
 import { Redirect } from "react-router";
@@ -19,11 +20,13 @@ export class AdminPage extends Component {
       logsDetails: [],
       tweets: [],
       loggedIn: props.loggedIn,
+      userdata: {},
     };
     this.removeTweet = this.removeTweet.bind(this);
     this.loadTenTweets = this.loadTenTweets.bind(this);
     this.getLogs = this.getLogs.bind(this);
     this.getUsersData = this.getUsersData.bind(this);
+    this.changeRole = this.changeRole.bind(this);
   }
   async removeTweet(e) {
     const tweets = this.state.tweets.filter((tweet) => tweet.id !== e.id);
@@ -41,7 +44,15 @@ export class AdminPage extends Component {
       });
   }
 
-  async getUsersData() {}
+  async getUsersData() {
+    await Instance.get(ApiAction.getAllUsers)
+      .then((data) => {
+        this.setState({ userdata: data.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   async getLogs() {
     await Instance.get(ApiAction.getLogs)
@@ -62,7 +73,20 @@ export class AdminPage extends Component {
         console.log(error);
       });
   }
-
+  async changeRole(e) {
+    console.log(e);
+    await Instance.put(ApiAction.makeMod, null, {
+      params: {
+        usernameChangeRole: e,
+      },
+    })
+      .then((data) => {
+        alert(data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
   async checkForAdmin() {
     await Instance.get(ApiAction.checkModeration)
       .then((data) => {
@@ -96,7 +120,8 @@ export class AdminPage extends Component {
   }
 
   render() {
-    const { logs, tweets, isAdmin, logsDetails } = this.state;
+    const { logs, tweets, isAdmin, logsDetails, userdata } = this.state;
+
     const data = {
       labels: ["Tweets", "Account", "Profile", "Timeline", "Moderation"],
       datasets: [
@@ -127,11 +152,33 @@ export class AdminPage extends Component {
         {isAdmin ? (
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
-              <Tweetsusers
-                tweets={tweets}
-                action={this.removeTweet}
-              ></Tweetsusers>
+              {userdata.length > 0 ? (
+                <AllUsers
+                  userdata={userdata}
+                  action={this.changeRole}
+                ></AllUsers>
+              ) : (
+                <div>No users can be loaded</div>
+              )}
+              {tweets.length > 0 ? (
+                <Tweetsusers
+                  tweets={tweets}
+                  action={this.removeTweet}
+                ></Tweetsusers>
+              ) : (
+                <div>No tweets can be loaded</div>
+              )}
             </Grid>
+            {/* <Grid item xs={12} sm={3}>
+              {userdata.length > 0 ? (
+                <AllUsers
+                  userdata={userdata}
+                  // action={this.removeTweet}
+                ></AllUsers>
+              ) : (
+                <div>No users can be loaded</div>
+              )}
+            </Grid> */}
             <Grid item xs={12} sm={6}>
               {logsDetails.length > 0 ? (
                 <Doughnut data={data} className='logdetails' />
