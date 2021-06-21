@@ -8,10 +8,10 @@ De applicatie is een semester 6 project gemaakt door Bram Houben van s63
 Installatie
 `npm install`
 
-Run de testen
+Run de tests
 `npm test`
 
-Maak de productie byuld
+Maak de productie build
 `npm run build`
 
 ## Technieken/software
